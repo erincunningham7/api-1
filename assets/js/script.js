@@ -17,7 +17,16 @@ async function postForm(e) {
         body: form,
     });
 
+    const data = await response.json();
+
+    if (response.ok) {
+        displayErrors(data);
+    } else {
+        throw new Error(data.error);
+    }
+
 }
+
 
 async function getStatus(e) {
     const queryString = `${API_URL}?api_key=${API_KEY}`;
